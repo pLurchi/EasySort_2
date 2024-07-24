@@ -1,4 +1,4 @@
-# Vanillasort
+# VanillaSort
 
 Classic chest sorted, no fancy stuff, plain basic.
 
