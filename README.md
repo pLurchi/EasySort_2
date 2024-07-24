@@ -2,6 +2,8 @@
 
 Classic chest sorted, no fancy stuff, plain basic.
 
+[Read the description](DESCRIPTION.md)
+
 ## Usage
 
 > Create a **Trapped Chest**
