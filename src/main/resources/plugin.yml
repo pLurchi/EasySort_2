@@ -1,0 +1,6 @@
+name: VanillaSort
+main: me.lucacicada.spigot.vanillasort.Plugin
+author: lucacicada
+website: lucacicada.me
+version: 1.0.0
+api-version: 1.15
