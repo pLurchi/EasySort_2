@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>me.lucacicada.spigot.vanillasort</groupId>
-	<artifactId>VanillaSort</artifactId>
+	<artifactId>EasySort</artifactId>
 	<version>1.0.0</version>
 
 	<properties>
