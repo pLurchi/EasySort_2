@@ -1,13 +1,7 @@
 package me.lucacicada.spigot.vanillasort;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
-import java.util.Map;
 
 import javax.annotation.Nonnull;
 
@@ -32,15 +26,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  * VanillaSort java plugin
  */
 public class Plugin extends JavaPlugin implements Listener {
-
-    /**
-     * The custom name of the sorter chest.
-     */
-    private static final String CUSTOM_SORTER_NAME = "Sorter";
-    private static final String CUSTOM_SORTER_NAME_M = "SorterM";
-    private static final String CUSTOM_SORTER_NAME_L = "SorterL";
-    private static final String CUSTOM_SORTER_NAME_XL = "SorterXL";
-
 
     private static final Logger LOGGER = Logger.getLogger("VanillaSort");
 
@@ -96,7 +81,8 @@ public class Plugin extends JavaPlugin implements Listener {
 
         // Allow any custom name that starts with "Sorter"
         // If it's Sorter but not in the list we go by default height of 5, later in the code
-        if (!chest.getCustomName().startsWith("Sorter")) {
+        final String CUSTOM_SORTER_NAME = chest.getCustomName();
+        if (!Objects.requireNonNull(CUSTOM_SORTER_NAME).startsWith("Sorter")) {
             return;
         }
 
@@ -121,7 +107,7 @@ public class Plugin extends JavaPlugin implements Listener {
 
         // Find all the blocks in an area around the chest
         final int RADIUS_XZ = 16;
-        final int RADIUS_Y = sorterToRadius.getOrDefault(CUSTOM_SORTER_NAME, 5);
+        final int RADIUS_Y = sorterToRadiusY.getOrDefault(CUSTOM_SORTER_NAME, 5);
 
         for (int x = -RADIUS_XZ; x <= RADIUS_XZ; x++) {
             for (int z = -RADIUS_XZ; z <= RADIUS_XZ; z++) {
