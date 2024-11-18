@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
@@ -36,6 +37,10 @@ public class Plugin extends JavaPlugin implements Listener {
      * The custom name of the sorter chest.
      */
     private static final String CUSTOM_SORTER_NAME = "Sorter";
+    private static final String CUSTOM_SORTER_NAME_M = "SorterM";
+    private static final String CUSTOM_SORTER_NAME_L = "SorterL";
+    private static final String CUSTOM_SORTER_NAME_XL = "SorterXL";
+
 
     private static final Logger LOGGER = Logger.getLogger("VanillaSort");
 
@@ -89,8 +94,9 @@ public class Plugin extends JavaPlugin implements Listener {
             return;
         }
 
-        // Only allow chests with a special custom name
-        if (!CUSTOM_SORTER_NAME.equals(chest.getCustomName())) {
+        // Allow any custom name that starts with "Sorter"
+        // If it's Sorter but not in the list we go by default height of 5, later in the code
+        if (!chest.getCustomName().startsWith("Sorter")) {
             return;
         }
 
@@ -104,9 +110,18 @@ public class Plugin extends JavaPlugin implements Listener {
         HashSet<Integer> targetContainersHashSet = new HashSet<>();
         List<TargetContainer> targetContainers = new ArrayList<>();
 
+        
+
+        Map<String, Integer> sorterToRadiusY = Map.of(
+            "Sorter", 5,
+            "SorterM", 16,
+            "SorterL", 32,
+            "SorterXL", 150
+        );
+
         // Find all the blocks in an area around the chest
         final int RADIUS_XZ = 16;
-        final int RADIUS_Y = 5;
+        final int RADIUS_Y = sorterToRadius.getOrDefault(CUSTOM_SORTER_NAME, 5);
 
         for (int x = -RADIUS_XZ; x <= RADIUS_XZ; x++) {
             for (int z = -RADIUS_XZ; z <= RADIUS_XZ; z++) {
